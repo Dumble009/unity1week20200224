@@ -22,6 +22,13 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		}
 	}
 
+	private Subject<float> timeInBarSubject;
+	public IObservable<float> OnTimeInBar {
+		get {
+			return timeInBarSubject;
+		}
+	}
+
 	IEnumerator beatCoroutine;
 
 	private int beatCount;
@@ -31,11 +38,26 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		}
 	}
 
+	float lastBeatTime = 0;
+
 	protected override void Awake()
 	{
 		base.Awake();
 		beatSubject = new Subject<int>();
-		StartBeat();
+		timeInBarSubject = new Subject<float>();
+	}
+
+	private void Update()
+	{
+		if (isPlaying)
+		{
+			float secondPerBeat = 60.0f / BPM;
+			float currentTime = Time.time;
+			int beatsInBar = beatCount % 4;
+			float timeInBar = beatsInBar + (currentTime - lastBeatTime) / secondPerBeat;
+
+			timeInBarSubject.OnNext(timeInBar);
+		}
 	}
 
 	public void StartBeat()
@@ -55,9 +77,10 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		isPlaying = true;
 		while (isPlaying)
 		{
-			beatCount++;
+			lastBeatTime = Time.time;
 			beatSubject.OnNext(beatCount);
 			yield return new WaitForSeconds(waitSecond);
+			beatCount++;
 		}
 	}
 }
