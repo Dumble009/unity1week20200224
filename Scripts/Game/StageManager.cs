@@ -16,10 +16,24 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		}
 	}
 
+	Subject<int> endProblemSubject;
+	public IObservable<int> OnEndProblem {
+		get {
+			return endProblemSubject;
+		}
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+
+		startProblemSubject = new Subject<int>();
+		endProblemSubject = new Subject<int>();
+	}
+
 	private void Start()
 	{
 		Problem problem = ProblemLoader.LoadProblem(problemPath);
-		startProblemSubject = new Subject<int>();
 		ProblemManager.Instance.SetProblem(problem);
 		BeatManager.Instance.StartBeat();
 		StartCoroutine(PlayLoop());
@@ -32,7 +46,9 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		{
 			bool isWaitingProblem = true;
 			BeatManager.Instance.OnBeat
-				.Where(x => x % 4 == 0 && x != 0)
+				.Where(x => 
+					x % 4 == 0 && x != 0
+					)
 				.First()
 				.Subscribe(_i => {
 					isWaitingProblem = false;
@@ -53,6 +69,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 				});
 
 			yield return new WaitWhile(() =>  isPlayingProblem);
+
+			endProblemSubject.OnNext(lastBeat + 5);
 		}
 	}
 }

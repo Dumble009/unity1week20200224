@@ -71,15 +71,16 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 
 	IEnumerator BeatCoroutine()
 	{
+		yield return null;
 		float waitSecond = 60.0f / BPM;
-		beatCount = 0;
+		beatCount = -1;
 		isPlaying = true;
 		while (isPlaying)
 		{
-			lastBeatTime = Time.time;
-			beatSubject.OnNext(beatCount);
 			yield return new WaitForSeconds(waitSecond);
+			lastBeatTime = Time.time;
 			beatCount++;
+			beatSubject.OnNext(beatCount);
 		}
 	}
 }
