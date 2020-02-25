@@ -15,9 +15,6 @@ public class TempoBar : MonoBehaviour
 	[SerializeField]
 	protected Transform endPoint;
 
-	[SerializeField]
-	protected GameObject upNode, downNode, neutralNode;
-
 	protected bool isPlaying;
 
 	protected virtual void Start()

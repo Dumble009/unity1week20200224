@@ -17,5 +17,10 @@ public class ProblemTempoBar : TempoBar
 			.Subscribe(_i => {
 				isPlaying = false;
 			});
+
+		ProblemManager.Instance.OnNode
+			.Subscribe(_i => {
+				NodeObjectManager.Instance.CreateNode(_i, transform.position);
+			});
 	}
 }

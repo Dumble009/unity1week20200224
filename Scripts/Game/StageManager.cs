@@ -57,7 +57,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 			yield return new WaitWhile(() => isWaitingProblem);
 
-			startProblemSubject.OnNext(lastBeat + 1);
+			startProblemSubject.OnNext(lastBeat);
 
 			bool isPlayingProblem = true;
 			BeatManager.Instance.OnBeat
