@@ -15,7 +15,7 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 	}
 
 	Problem currentProblem;
-	int barIndex = 0;
+	int barIndex = -1;
 	int nodeIndex = 0;
 
 	override protected void Awake()
@@ -27,21 +27,25 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 	public void SetProblem(Problem problem)
 	{
 		currentProblem = problem;
-		BeatManager.Instance.OnBeat
-			.Where(x => x % 4 == 0 && x != 0)
+		StageManager.Instance.OnStartProblem
 			.Subscribe(_i => {
-				barIndex++;
-				nodeIndex = 0;
+				StartProblem(_i);
 			});
+	}
+
+	void StartProblem(int startBeat)
+	{
+		barIndex++;
+		nodeIndex = 0;
 
 		BeatManager.Instance.OnTimeInBar
-			.Where(x => 
+			.TakeWhile(x =>
 				barIndex < currentProblem.bars.Length &&
-				nodeIndex < currentProblem.bars[barIndex].nodes.Length && 
-				x >= currentProblem.bars[barIndex].nodes[nodeIndex].Timing)
+				nodeIndex < currentProblem.bars[barIndex].nodes.Length)
+			.Where(x =>
+				x - startBeat >= currentProblem.bars[barIndex].nodes[nodeIndex].Timing)
 			.Subscribe(_f => {
 				nodeSubject.OnNext(currentProblem.bars[barIndex].nodes[nodeIndex].Pitch);
-				Debug.Log(_f.ToString() + ":" + barIndex.ToString() + ":" + nodeIndex.ToString());
 				nodeIndex++;
 			});
 	}

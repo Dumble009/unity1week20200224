@@ -53,10 +53,9 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		{
 			float secondPerBeat = 60.0f / BPM;
 			float currentTime = Time.time;
-			int beatsInBar = beatCount % 4;
-			float timeInBar = beatsInBar + (currentTime - lastBeatTime) / secondPerBeat;
+			float floatBeat = beatCount + (currentTime - lastBeatTime) / secondPerBeat;
 
-			timeInBarSubject.OnNext(timeInBar);
+			timeInBarSubject.OnNext(floatBeat);
 		}
 	}
 
