@@ -21,7 +21,6 @@ public class TempoBar : MonoBehaviour
 	{
 		isPlaying = false;
 		BeatManager.Instance.OnTimeInBar
-			.SkipWhile(_f => !isPlaying)
 			.Subscribe(_f => {
 				SetValue(_f);
 			});
@@ -37,10 +36,13 @@ public class TempoBar : MonoBehaviour
 
 		transform.localScale = size;
 
-		float posVal = (time % 4.0f) / 4.0f;
+		if (isPlaying)
+		{
+			float posVal = (time % 4.0f) / 4.0f;
 
-		Vector3 position = Vector3.Lerp(startPoint.position, endPoint.position, posVal);
+			Vector3 position = Vector3.Lerp(startPoint.position, endPoint.position, posVal);
 
-		transform.position = position;
+			transform.position = position;
+		}
 	}
 }

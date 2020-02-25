@@ -23,12 +23,28 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		}
 	}
 
+	Subject<int> startPlayingSubject;
+	public IObservable<int> OnStartPlaying {
+		get {
+			return startPlayingSubject;
+		}
+	}
+
+	Subject<int> endPlayingSubject;
+	public IObservable<int> OnEndPlaying {
+		get {
+			return endPlayingSubject;
+		}
+	}
+
 	protected override void Awake()
 	{
 		base.Awake();
 
 		startProblemSubject = new Subject<int>();
 		endProblemSubject = new Subject<int>();
+		startPlayingSubject = new Subject<int>();
+		endPlayingSubject = new Subject<int>();
 	}
 
 	private void Start()
@@ -70,7 +86,36 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 			yield return new WaitWhile(() =>  isPlayingProblem);
 
-			endProblemSubject.OnNext(lastBeat + 5);
+			endProblemSubject.OnNext(lastBeat);
+
+			bool isWaitingPlaying = true;
+			BeatManager.Instance.OnBeat
+				.Where(x =>
+					x % 4 == 0 && x != 0
+					)
+				.First()
+				.Subscribe(_i => {
+					isWaitingPlaying = false;
+					lastBeat = _i;
+				});
+
+			yield return new WaitWhile(() => isWaitingPlaying);
+
+			startPlayingSubject.OnNext(lastBeat);
+
+			bool isPlayingPlayer = true;
+			BeatManager.Instance.OnBeat
+				.Where(x =>
+					x % 4 == 0 && x != 0
+					)
+				.First()
+				.Subscribe(_i => {
+					isPlayingPlayer = false;
+					lastBeat = _i;
+				});
+
+			yield return new WaitWhile(() => isPlayingPlayer);
+			endPlayingSubject.OnNext(lastBeat);
 		}
 	}
 }
