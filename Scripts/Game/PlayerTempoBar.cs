@@ -8,13 +8,13 @@ public class PlayerTempoBar : TempoBar
 	protected override void Start()
 	{
 		base.Start();
-		StageManager.Instance.OnStartPlaying
+		StageManager.Instance.OnPlayerBarStart
 			.Subscribe(_i => {
 				isPlaying = true;
 				startBeat = _i;
 			});
 
-		StageManager.Instance.OnEndPlaying
+		StageManager.Instance.OnPlayerBarStop
 			.Subscribe(_i => {
 				isPlaying = false;
 			});

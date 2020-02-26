@@ -8,13 +8,13 @@ public class ProblemTempoBar : TempoBar
 	protected override void Start()
 	{
 		base.Start();
-		StageManager.Instance.OnStartProblem
+		StageManager.Instance.OnProblemBarStart
 			.Subscribe(_i => {
 				isPlaying = true;
 				startBeat = _i;
 			});
 
-		StageManager.Instance.OnEndProblem
+		StageManager.Instance.OnProblemBarStop
 			.Subscribe(_i => {
 				isPlaying = false;
 			});

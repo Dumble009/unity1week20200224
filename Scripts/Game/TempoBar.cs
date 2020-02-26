@@ -40,7 +40,7 @@ public class TempoBar : MonoBehaviour
 
 		if (isPlaying)
 		{
-			float posVal = ((time - startBeat) % 4.0f) / 4.0f;
+			float posVal = ((time - startBeat) % 5.0f) / 5.0f;
 
 			Vector3 position = Vector3.Lerp(startPoint.position, endPoint.position, posVal);
 

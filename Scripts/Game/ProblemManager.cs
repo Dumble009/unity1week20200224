@@ -38,6 +38,8 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 		barIndex++;
 		nodeIndex = 0;
 
+		Debug.Log(startBeat);
+
 		BeatManager.Instance.OnTimeInBar
 			.TakeWhile(x =>
 				barIndex < currentProblem.bars.Length &&
