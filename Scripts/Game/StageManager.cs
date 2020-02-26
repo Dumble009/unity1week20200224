@@ -37,6 +37,34 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		}
 	}
 
+	Subject<int> startProblemBarSubject;
+	public IObservable<int> OnProblemBarStart {
+		get {
+			return startProblemBarSubject;
+		}
+	}
+
+	Subject<int> stopProblemBarSubject;
+	public IObservable<int> OnProblemBarStop {
+		get {
+			return stopProblemBarSubject;
+		}
+	}
+
+	Subject<int> startPlayerBarSubject;
+	public IObservable<int> OnPlayerBarStart {
+		get {
+			return startPlayerBarSubject;
+		}
+	}
+
+	Subject<int> stopPlayerBarSubject;
+	public IObservable<int> OnPlayerBarStop {
+		get {
+			return stopPlayerBarSubject;
+		}
+	}
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -45,6 +73,11 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		endProblemSubject = new Subject<int>();
 		startPlayingSubject = new Subject<int>();
 		endPlayingSubject = new Subject<int>();
+		startProblemBarSubject = new Subject<int>();
+		stopProblemBarSubject = new Subject<int>();
+		startPlayerBarSubject = new Subject<int>();
+		stopPlayerBarSubject = new Subject<int>();
+
 	}
 
 	private void Start()
