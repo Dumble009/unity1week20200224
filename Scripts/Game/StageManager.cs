@@ -99,6 +99,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 				.Subscribe(_i => {
 					isWaitingProblem = false;
 					lastBeat = _i;
+
+					startProblemBarSubject.OnNext(_i);
 				});
 
 			yield return new WaitWhile(() => isWaitingProblem);
@@ -114,7 +116,11 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 				});
 
 			yield return new WaitWhile(() =>  isPlayingProblem);
-
+			BeatManager.Instance.OnBeat
+				.First()
+				.Subscribe(_i => {
+					stopProblemBarSubject.OnNext(_i);
+				});
 			endProblemSubject.OnNext(lastBeat);
 
 			bool isWaitingPlaying = true;
@@ -123,10 +129,11 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 				.Subscribe(_i => {
 					isWaitingPlaying = false;
 					lastBeat = _i;
+
+					startPlayerBarSubject.OnNext(_i);
 				});
 
 			yield return new WaitWhile(() => isWaitingPlaying);
-
 			startPlayingSubject.OnNext(lastBeat);
 
 			bool isPlayingPlayer = true;
@@ -138,6 +145,11 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 				});
 
 			yield return new WaitWhile(() => isPlayingPlayer);
+			BeatManager.Instance.OnBeat
+				.First()
+				.Subscribe(_i => {
+					stopPlayerBarSubject.OnNext(_i);
+				});
 			endPlayingSubject.OnNext(lastBeat);
 		}
 	}
