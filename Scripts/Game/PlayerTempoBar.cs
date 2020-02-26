@@ -11,6 +11,7 @@ public class PlayerTempoBar : TempoBar
 		StageManager.Instance.OnStartPlaying
 			.Subscribe(_i => {
 				isPlaying = true;
+				startBeat = _i;
 			});
 
 		StageManager.Instance.OnEndPlaying

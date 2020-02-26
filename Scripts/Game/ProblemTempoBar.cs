@@ -11,6 +11,7 @@ public class ProblemTempoBar : TempoBar
 		StageManager.Instance.OnStartProblem
 			.Subscribe(_i => {
 				isPlaying = true;
+				startBeat = _i;
 			});
 
 		StageManager.Instance.OnEndProblem

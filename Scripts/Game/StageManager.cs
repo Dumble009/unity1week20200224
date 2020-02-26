@@ -62,10 +62,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		{
 			bool isWaitingProblem = true;
 			BeatManager.Instance.OnBeat
-				.Where(x => 
-					x % 4 == 0 && x != 0
-					)
-				.First()
+				.Skip(3)
 				.Subscribe(_i => {
 					isWaitingProblem = false;
 					lastBeat = _i;
@@ -77,8 +74,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 			bool isPlayingProblem = true;
 			BeatManager.Instance.OnBeat
-				.Where(x => x % 4 == 0 && x != 0)
-				.First()
+				.Skip(3)
 				.Subscribe(_i => {
 					isPlayingProblem = false;
 					lastBeat = _i;
@@ -90,10 +86,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 			bool isWaitingPlaying = true;
 			BeatManager.Instance.OnBeat
-				.Where(x =>
-					x % 4 == 0 && x != 0
-					)
-				.First()
+				.Skip(3)
 				.Subscribe(_i => {
 					isWaitingPlaying = false;
 					lastBeat = _i;
@@ -105,10 +98,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 			bool isPlayingPlayer = true;
 			BeatManager.Instance.OnBeat
-				.Where(x =>
-					x % 4 == 0 && x != 0
-					)
-				.First()
+				.Skip(3)
 				.Subscribe(_i => {
 					isPlayingPlayer = false;
 					lastBeat = _i;
