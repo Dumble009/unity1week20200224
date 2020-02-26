@@ -40,5 +40,41 @@
 				}
 			]
 		},
+		{
+			"nodes":[
+				{
+					"timing":0,
+					"pitch":0
+				},
+				{
+					"timing":0.5,
+					"pitch":0
+				},
+				{
+					"timing":1,
+					"pitch":1
+				},
+				{
+					"timing":1.5,
+					"pitch":1
+				},
+				{
+					"timing":2,
+					"pitch":1
+				},
+				{
+					"timing":2.5,
+					"pitch":1
+				},
+				{
+					"timing":3,
+					"pitch":0
+				},
+				{
+					"timing":3.5,
+					"pitch":0
+				}
+			]
+		},
 	]
 }

@@ -17,5 +17,10 @@ public class PlayerTempoBar : TempoBar
 			.Subscribe(_i => {
 				isPlaying = false;
 			});
+
+		InputAgent.Instance.OnInput
+			.Subscribe(_i => {
+				NodeObjectManager.Instance.CreateNode(_i, transform.position);
+			});
 	}
 }
