@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
+using System;
 
 public enum Score
 {
@@ -13,10 +15,27 @@ public enum Score
 public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 {
 	List<PlayerNode> playerNodes;
+	Subject<Score> calcScoreSubject;
+	public IObservable<Score> OnCalcScore {
+		get {
+			return calcScoreSubject;
+		}
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+		calcScoreSubject = new Subject<Score>();
+	}
 
 	private void Start()
 	{
 		playerNodes = new List<PlayerNode>();
+		StageManager.Instance.OnPlayerBarStop
+			.Subscribe(_i => {
+				Score score = CalcScore(ProblemManager.Instance.GetCurrentBar());
+				calcScoreSubject.OnNext(score);
+			});
 	}
 
 	public Score CalcScore(Bar bar)

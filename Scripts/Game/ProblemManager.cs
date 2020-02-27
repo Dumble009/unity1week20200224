@@ -49,6 +49,11 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 				nodeIndex++;
 			});
 	}
+
+	public Bar GetCurrentBar()
+	{
+		return currentProblem.bars[barIndex];
+	}
 }
 
 [DataContract]
