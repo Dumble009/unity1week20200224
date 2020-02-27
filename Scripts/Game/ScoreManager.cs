@@ -21,6 +21,9 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 			return calcScoreSubject;
 		}
 	}
+	float currentTiming = 0;
+	int problemLastBeat = 0;
+	int playerStartBeat = 0;
 
 	protected override void Awake()
 	{
@@ -35,6 +38,27 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 			.Subscribe(_i => {
 				Score score = CalcScore(ProblemManager.Instance.GetCurrentBar());
 				calcScoreSubject.OnNext(score);
+				playerNodes.Clear();
+			});
+
+		StageManager.Instance.OnProblemBarStop
+			.Subscribe(_i => {
+				problemLastBeat = _i;
+			});
+
+		StageManager.Instance.OnPlayerBarStart
+			.Subscribe(_i => {
+				playerStartBeat = _i;
+			});
+
+		BeatManager.Instance.OnTimeInBar
+			.Subscribe(_f => {
+				currentTiming = _f;
+			});
+
+		InputAgent.Instance.OnInput
+			.Subscribe(_i => {
+				AddPlayerNode(_i, currentTiming);
 			});
 	}
 
@@ -43,7 +67,16 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 		Score result = Score.BAD;
 		int badPoint = 0;
 		Node[] problemNodes = bar.nodes;
+		foreach (var problemNode in problemNodes)
+		{
+			problemNode.Timing = 4 - problemNode.Timing;
+		}
+		foreach (var playerNode in playerNodes)
+		{
+			playerNode.Timing = playerNode.Timing - playerStartBeat;
+		}
 		badPoint = Mathf.Abs(playerNodes.Count - problemNodes.Length);
+
 		foreach (var playerNode in playerNodes)
 		{
 			bool isMatched = false;
@@ -82,7 +115,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 		return result;
 	}
 
-	public void AddPlayerNode(int pitch, int timing)
+	public void AddPlayerNode(int pitch, float timing)
 	{
 		PlayerNode n = new PlayerNode(pitch, timing);
 		playerNodes.Add(n);
@@ -96,16 +129,22 @@ public class PlayerNode
 		get {
 			return pitch;
 		}
+		set {
+			pitch = value;
+		}
 	}
-	int timing;
-	public int Timing {
+	float timing;
+	public float Timing {
 		get {
 			return timing;
+		}
+		set {
+			timing = value;
 		}
 	}
 	public bool isMatch;
 
-	public PlayerNode(int _pitch, int _timing)
+	public PlayerNode(int _pitch, float _timing)
 	{
 		pitch = _pitch;
 		timing = _timing;

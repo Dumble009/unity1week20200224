@@ -52,7 +52,14 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 
 	public Bar GetCurrentBar()
 	{
-		return currentProblem.bars[barIndex];
+		if (barIndex < currentProblem.bars.Length)
+		{
+			return currentProblem.bars[barIndex];
+		}
+		else
+		{
+			return currentProblem.bars[0];
+		}
 	}
 }
 
