@@ -82,7 +82,7 @@ public class ScoreManager : SingletonMonoBehaviour<ScoreManager>
 			bool isMatched = false;
 			foreach (var problemNode in problemNodes)
 			{
-				if (playerNode.Pitch == problemNode.Pitch && Mathf.Abs(playerNode.Timing - problemNode.Timing) < 0.125f)
+				if (playerNode.Pitch == problemNode.Pitch && Mathf.Abs(playerNode.Timing - problemNode.Timing) < 0.25f)
 				{
 					isMatched = true;
 					break;
