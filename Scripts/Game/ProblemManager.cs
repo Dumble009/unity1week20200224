@@ -48,7 +48,7 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 	public void SetProblem(Problem problem)
 	{
 		nodeIndex = 0;
-		barIndex = 0;
+		barIndex = -1;
 		currentProblem = problem;
 		StageManager.Instance.OnStartProblem
 			.Subscribe(_i => {

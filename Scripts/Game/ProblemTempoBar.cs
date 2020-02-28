@@ -22,6 +22,12 @@ public class ProblemTempoBar : TempoBar
 		ProblemManager.Instance.OnProblemFinish
 			.Subscribe(_i => {
 				isPlaying = false;
+				isBeating = false;
+			});
+
+		StageManager.Instance.OnStartStage
+			.Subscribe(_i => {
+				isBeating = true;
 			});
 
 		ProblemManager.Instance.OnNode

@@ -9,6 +9,13 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 	[SerializeField]
 	string problemPath;
 
+	Subject<int> startStageSubject;
+	public IObservable<int> OnStartStage {
+		get {
+			return startStageSubject;
+		}
+	}
+
 	Subject<int> startProblemSubject;
 	public IObservable<int> OnStartProblem {
 		get {
@@ -67,10 +74,12 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 	IEnumerator playLoopCoroutine;
 
+	Problem problem;
+
 	protected override void Awake()
 	{
 		base.Awake();
-
+		startStageSubject = new Subject<int>();
 		startProblemSubject = new Subject<int>();
 		endProblemSubject = new Subject<int>();
 		startPlayingSubject = new Subject<int>();
@@ -84,7 +93,20 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 	private void Start()
 	{
-		Problem problem = ProblemLoader.LoadProblem(problemPath);
+		TutorialManager.Instance.OnTutorialFinish
+			.Subscribe(_i => {
+				StartStage();
+			});
+
+		ResultManager.Instance.OnRestart
+			.Subscribe(_i => {
+				StartStage();
+			});
+	}
+
+	void StartStage()
+	{
+		problem = ProblemLoader.LoadProblem(problemPath);
 		ProblemManager.Instance.SetProblem(problem);
 		BeatManager.Instance.StartBeat();
 		playLoopCoroutine = PlayLoop();
@@ -94,6 +116,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 			.Subscribe(_i => {
 				StopCoroutine(playLoopCoroutine);
 			});
+
+		startStageSubject.OnNext(0);
 	}
 
 	IEnumerator PlayLoop()

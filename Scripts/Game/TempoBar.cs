@@ -16,13 +16,14 @@ public class TempoBar : MonoBehaviour
 	protected Transform endPoint;
 
 	protected bool isPlaying;
-	protected bool isObserving;
+	protected bool isBeating;
 
 	protected int startBeat = 0;
 
 	protected virtual void Start()
 	{
 		isPlaying = false;
+		isBeating = false;
 		BeatManager.Instance.OnTimeInBar
 			.Subscribe(_f => {
 				SetValue(_f);
@@ -31,13 +32,16 @@ public class TempoBar : MonoBehaviour
 
 	protected virtual void SetValue(float time)
 	{
-		float val = Mathf.Abs((time % 1.0f) - 0.5f) * 2.0f;
+		if (isBeating)
+		{
+			float val = Mathf.Abs((time % 1.0f) - 0.5f) * 2.0f;
 
-		float clamped = Mathf.Lerp(minSize, maxSize, val * val);
-		
-		Vector3 size = new Vector3(clamped, clamped, clamped);
+			float clamped = Mathf.Lerp(minSize, maxSize, val * val);
 
-		transform.localScale = size;
+			Vector3 size = new Vector3(clamped, clamped, clamped);
+
+			transform.localScale = size;
+		}
 
 		if (isPlaying)
 		{

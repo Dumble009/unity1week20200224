@@ -19,6 +19,17 @@ public class PlayerTempoBar : TempoBar
 				isPlaying = false;
 			});
 
+		ProblemManager.Instance.OnProblemFinish
+			.Subscribe(_i => {
+				isPlaying = false;
+				isBeating = false;
+			});
+
+		StageManager.Instance.OnStartStage
+			.Subscribe(_i => {
+				isBeating = true;
+			});
+
 		InputAgent.Instance.OnInput
 			.Subscribe(_i => {
 				NodeObjectManager.Instance.CreateNode(_i, transform.position);

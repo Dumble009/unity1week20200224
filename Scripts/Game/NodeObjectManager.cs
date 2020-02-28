@@ -21,6 +21,15 @@ public class NodeObjectManager : SingletonMonoBehaviour<NodeObjectManager>
 				}
 				nodes.Clear();
 			});
+
+		ResultManager.Instance.OnRestart
+			.Subscribe(_i => {
+				foreach (var go in nodes)
+				{
+					Destroy(go);
+				}
+				nodes.Clear();
+			});
 	}
 
 	public void CreateNode(int pitch, Vector3 position)

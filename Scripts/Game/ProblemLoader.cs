@@ -7,14 +7,24 @@ using System.Net;
 
 public class ProblemLoader
 {
+	static bool isCached = false;
+	static string cache;
 	public static Problem LoadProblem(string path)
 	{
 		string jsonBody = "";
-		WebClient wc = new WebClient();
-		using (Stream wwwStream = wc.OpenRead(path))
+		if (!isCached || string.IsNullOrEmpty(cache))
 		{
-			StreamReader sr = new StreamReader(wwwStream);
-			jsonBody = sr.ReadToEnd();
+			WebClient wc = new WebClient();
+			using (Stream wwwStream = wc.OpenRead(path))
+			{
+				StreamReader sr = new StreamReader(wwwStream);
+				jsonBody = sr.ReadToEnd();
+			}
+			cache = jsonBody;
+		}
+		else
+		{
+			jsonBody = cache;
 		}
 
 

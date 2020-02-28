@@ -69,6 +69,8 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 
 	public void StartBeat()
 	{
+		beatCount = 0;
+		lastBeatTime = 0;
 		if (beatCoroutine != null)
 		{
 			StopCoroutine(beatCoroutine);

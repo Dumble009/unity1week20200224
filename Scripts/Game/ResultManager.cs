@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UniRx;
+using System;
 
 public class RankingPacket
 {
@@ -33,6 +34,19 @@ public class ResultManager : SingletonMonoBehaviour<ResultManager>
 	[SerializeField]
 	GameObject resultRoot;
 
+	Subject<int> restartSubject;
+	public IObservable<int> OnRestart {
+		get {
+			return restartSubject;
+		}
+	}
+
+	protected override void Awake()
+	{
+		base.Awake();
+		restartSubject = new Subject<int>();
+	}
+
 	private void Start()
 	{
 		resultRoot.SetActive(false);
@@ -60,5 +74,11 @@ public class ResultManager : SingletonMonoBehaviour<ResultManager>
 		{
 			rankingsTMPro[i].text = string.Format(rankingsTMPro[i].text, packet.Ranks[i], packet.Scores[i]);
 		}
+	}
+
+	public void Restart()
+	{
+		resultRoot.SetActive(false);
+		restartSubject.OnNext(0);
 	}
 }
