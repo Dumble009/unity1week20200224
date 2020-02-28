@@ -1768,11 +1768,13 @@ MonoBehaviour:
   goodCount: {fileID: 652032942}
   badCount: {fileID: 1510108788}
   totalScore: {fileID: 449157357}
-  firstRank: {fileID: 937648663}
-  secondRank: {fileID: 658377159}
-  thirdRank: {fileID: 1116535903}
-  fourthRank: {fileID: 2130038293}
-  fifthRank: {fileID: 294540626}
+  rankingsTMPro:
+  - {fileID: 937648663}
+  - {fileID: 658377159}
+  - {fileID: 1116535903}
+  - {fileID: 2130038293}
+  - {fileID: 294540626}
+  resultRoot: {fileID: 903293009}
 --- !u!4 &483491134
 Transform:
   m_ObjectHideFlags: 0
