@@ -40,6 +40,8 @@ public class ResultManager : SingletonMonoBehaviour<ResultManager>
 	public void ShowResult()
 	{
 		resultRoot.SetActive(true);
+		int totalScore = PerfectCount * 1000 + GreatCount * 500 + GoodCount * 300 + BadCount * 0;
+		totalScoreTMPro.text = string.Format(totalScoreTMPro.text, totalScore);
 	}
 
 	public void SetRanking(RankingPacket packet)

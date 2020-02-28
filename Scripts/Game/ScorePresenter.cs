@@ -25,18 +25,22 @@ public class ScorePresenter : MonoBehaviour
 		switch (score) {
 			case Score.PERFECT:
 				target = perfect;
+				ResultManager.Instance.PerfectCount++;
 				break;
 
 			case Score.GREAT:
 				target = great;
+				ResultManager.Instance.GreatCount++;
 				break;
 
 			case Score.GOOD:
 				target = good;
+				ResultManager.Instance.GoodCount++;
 				break;
 
 			case Score.BAD:
 				target = bad;
+				ResultManager.Instance.BadCount++;
 				break;
 
 			default:

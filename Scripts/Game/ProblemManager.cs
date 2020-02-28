@@ -14,6 +14,13 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 		}
 	}
 
+	Subject<int> finishProblemSubject;
+	public IObservable<int> OnProblemFinish {
+		get {
+			return finishProblemSubject;
+		}
+	}
+
 	Problem currentProblem;
 	int barIndex = -1;
 	int nodeIndex = 0;
@@ -22,6 +29,7 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 	{
 		base.Awake();
 		nodeSubject = new Subject<int>();
+		finishProblemSubject = new Subject<int>();
 	}
 
 	public void SetProblem(Problem problem)
@@ -36,18 +44,26 @@ public class ProblemManager : SingletonMonoBehaviour<ProblemManager>
 	void StartProblem(int startBeat)
 	{
 		barIndex++;
-		nodeIndex = 0;
+		if (barIndex >= currentProblem.bars.Length)
+		{
+			finishProblemSubject.OnNext(0);
+		}
+		else
+		{
+			nodeIndex = 0;
 
-		BeatManager.Instance.OnTimeInBar
-			.TakeWhile(x =>
-				barIndex < currentProblem.bars.Length &&
-				nodeIndex < currentProblem.bars[barIndex].nodes.Length)
-			.Where(x =>
-				x - startBeat >= currentProblem.bars[barIndex].nodes[nodeIndex].Timing)
-			.Subscribe(_f => {
-				nodeSubject.OnNext(currentProblem.bars[barIndex].nodes[nodeIndex].Pitch);
-				nodeIndex++;
-			});
+			BeatManager.Instance.OnTimeInBar
+				.TakeWhile(x =>
+					barIndex < currentProblem.bars.Length &&
+					nodeIndex < currentProblem.bars[barIndex].nodes.Length)
+				.Where(x =>
+					x - startBeat >= currentProblem.bars[barIndex].nodes[nodeIndex].Timing)
+				.Subscribe(_f =>
+				{
+					nodeSubject.OnNext(currentProblem.bars[barIndex].nodes[nodeIndex].Pitch);
+					nodeIndex++;
+				});
+		}
 	}
 
 	public Bar GetCurrentBar()
