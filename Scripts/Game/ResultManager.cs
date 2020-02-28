@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UniRx;
 
 public class RankingPacket
 {
@@ -35,6 +36,10 @@ public class ResultManager : SingletonMonoBehaviour<ResultManager>
 	private void Start()
 	{
 		resultRoot.SetActive(false);
+		ProblemManager.Instance.OnProblemFinish
+			.Subscribe(_i => {
+				ShowResult();
+			});
 	}
 
 	public void ShowResult()
@@ -42,6 +47,11 @@ public class ResultManager : SingletonMonoBehaviour<ResultManager>
 		resultRoot.SetActive(true);
 		int totalScore = PerfectCount * 1000 + GreatCount * 500 + GoodCount * 300 + BadCount * 0;
 		totalScoreTMPro.text = string.Format(totalScoreTMPro.text, totalScore);
+
+		perfectCountTMPro.text = string.Format(perfectCountTMPro.text, PerfectCount);
+		greatCountTMPro.text = string.Format(greatCountTMPro.text, GreatCount);
+		goodCountTMPro.text = string.Format(goodCountTMPro.text, GoodCount);
+		badCountTMPro.text = string.Format(badCountTMPro.text, BadCount);
 	}
 
 	public void SetRanking(RankingPacket packet)

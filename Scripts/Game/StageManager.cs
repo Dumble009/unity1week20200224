@@ -65,6 +65,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		}
 	}
 
+	IEnumerator playLoopCoroutine;
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -85,7 +87,13 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 		Problem problem = ProblemLoader.LoadProblem(problemPath);
 		ProblemManager.Instance.SetProblem(problem);
 		BeatManager.Instance.StartBeat();
-		StartCoroutine(PlayLoop());
+		playLoopCoroutine = PlayLoop();
+		StartCoroutine(playLoopCoroutine);
+
+		ProblemManager.Instance.OnProblemFinish
+			.Subscribe(_i => {
+				StopCoroutine(playLoopCoroutine);
+			});
 	}
 
 	IEnumerator PlayLoop()

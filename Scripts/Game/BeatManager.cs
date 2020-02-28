@@ -47,6 +47,14 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		timeInBarSubject = new Subject<float>();
 	}
 
+	private void Start()
+	{
+		ProblemManager.Instance.OnProblemFinish
+			.Subscribe(_i => {
+				StopBeat();
+			});
+	}
+
 	private void Update()
 	{
 		if (isPlaying)
@@ -67,6 +75,14 @@ public class BeatManager : SingletonMonoBehaviour<BeatManager>
 		}
 		beatCoroutine = BeatCoroutine();
 		StartCoroutine(beatCoroutine);
+	}
+
+	void StopBeat()
+	{
+		if (beatCoroutine != null)
+		{
+			StopCoroutine(beatCoroutine);
+		}
 	}
 
 	IEnumerator BeatCoroutine()

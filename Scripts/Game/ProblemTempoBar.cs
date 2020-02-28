@@ -5,7 +5,7 @@ using UniRx;
 
 public class ProblemTempoBar : TempoBar
 {
-	protected override void Start()
+	override protected void Start()
 	{
 		base.Start();
 		StageManager.Instance.OnProblemBarStart
@@ -15,6 +15,11 @@ public class ProblemTempoBar : TempoBar
 			});
 
 		StageManager.Instance.OnProblemBarStop
+			.Subscribe(_i => {
+				isPlaying = false;
+			});
+
+		ProblemManager.Instance.OnProblemFinish
 			.Subscribe(_i => {
 				isPlaying = false;
 			});

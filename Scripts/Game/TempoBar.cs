@@ -16,6 +16,7 @@ public class TempoBar : MonoBehaviour
 	protected Transform endPoint;
 
 	protected bool isPlaying;
+	protected bool isObserving;
 
 	protected int startBeat = 0;
 
