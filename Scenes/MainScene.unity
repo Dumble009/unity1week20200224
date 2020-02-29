@@ -1049,7 +1049,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '{0}:{0:00000}'
+  m_text: '{0}:{1:00000}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe2791e3230012147a342f342747fe09, type: 2}
   m_sharedMaterial: {fileID: -4587543459103229231, guid: fe2791e3230012147a342f342747fe09,
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.75
+  m_fontSize: 25.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2793,7 +2793,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '{0}:{0:00000}'
+  m_text: '{0}:{1:00000}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe2791e3230012147a342f342747fe09, type: 2}
   m_sharedMaterial: {fileID: -4587543459103229231, guid: fe2791e3230012147a342f342747fe09,
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.65
+  m_fontSize: 25.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3422,7 +3422,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '{0}:{0:00000}'
+  m_text: '{0}:{1:00000}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe2791e3230012147a342f342747fe09, type: 2}
   m_sharedMaterial: {fileID: -4587543459103229231, guid: fe2791e3230012147a342f342747fe09,
@@ -3451,7 +3451,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.75
+  m_fontSize: 25.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3834,7 +3834,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '{0}:{0:00000}'
+  m_text: '{0}:{1:00000}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe2791e3230012147a342f342747fe09, type: 2}
   m_sharedMaterial: {fileID: -4587543459103229231, guid: fe2791e3230012147a342f342747fe09,
@@ -3863,7 +3863,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.75
+  m_fontSize: 25.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4806,8 +4806,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1345426980}
   - component: {fileID: 1345426979}
+  - component: {fileID: 1345426981}
   m_Layer: 0
-  m_Name: RankingManager
+  m_Name: NCMBSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4844,6 +4845,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1345426981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345426978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc26f65029009aa4ab2107f1ee3e8b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1379327504
 GameObject:
   m_ObjectHideFlags: 0
@@ -6819,7 +6832,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '{0}:{0:00000}'
+  m_text: '{0}:{1:00000}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe2791e3230012147a342f342747fe09, type: 2}
   m_sharedMaterial: {fileID: -4587543459103229231, guid: fe2791e3230012147a342f342747fe09,
@@ -6848,7 +6861,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24.75
+  m_fontSize: 25.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
