@@ -20,6 +20,26 @@
 			"nodes":[
 				{
 					"timing":0,
+					"pitch":2
+				},
+				{
+					"timing":1,
+					"pitch":1
+				},
+				{
+					"timing":2,
+					"pitch":0
+				},
+				{
+					"timing":3,
+					"pitch":0
+				}
+			]
+		},
+		{
+			"nodes":[
+				{
+					"timing":0,
 					"pitch":0
 				},
 				{
@@ -34,6 +54,26 @@
 					"timing":3,
 					"pitch":2
 				},
+			]
+		},
+		{
+			"nodes":[
+				{
+					"timing":0,
+					"pitch":0
+				},
+				{
+					"timing":0.5,
+					"pitch":0
+				},
+				{
+					"timing":2,
+					"pitch":2
+				},
+				{
+					"timing":2.5,
+					"pitch":2
+				}
 			]
 		},
 		{
@@ -139,6 +179,43 @@
 					"timing":3,
 					"pitch":0
 				}
+			]
+		},
+
+		{
+			"nodes":[
+				{
+					"timing":0,
+					"pitch":2
+				},
+				{
+					"timing":0.333,
+					"pitch":1
+				},
+				{
+					"timing":0.666,
+					"pitch":0
+				},
+				{
+					"timing":1,
+					"pitch":0
+				},
+				{
+					"timing":2,
+					"pitch":2
+				},
+				{
+					"timing":2.333,
+					"pitch":1
+				},
+				{
+					"timing":2.666,
+					"pitch":0
+				},
+				{
+					"timing":3,
+					"pitch":0
+				},
 			]
 		},
 
@@ -207,6 +284,47 @@
 				},
 				{
 					"timing":3,
+					"pitch":2
+				}
+			]
+		},
+
+		{
+			"nodes":[
+				{
+					"timing":0,
+					"pitch":0
+				},
+				{
+					"timing":0.25,
+					"pitch":0
+				},
+				{
+					"timing":0.75,
+					"pitch":0
+				},
+				{
+					"timing":1,
+					"pitch":1
+				},
+				{
+					"timing":1.25,
+					"pitch":1
+				},
+				{
+					"timing":1.75,
+					"pitch":1
+				},
+				{
+					"timing":2,
+					"pitch":2
+				},
+				{
+					"timing":2.25,
+					"pitch":2
+				},
+				{
+					"timing":2.75,
 					"pitch":2
 				}
 			]
