@@ -9,7 +9,17 @@ public class ScorePresenter : MonoBehaviour
 	GameObject perfect, great, good, bad;
 
 	[SerializeField]
+	AudioClip perfectClip, greatClip, goodClip, badClip;
+
+	AudioSource audioSource;
+
+	[SerializeField]
 	float showSeconds = 1.5f;
+
+	private void Awake()
+	{
+		audioSource = GetComponent<AudioSource>();
+	}
 
 	private void Start()
 	{
@@ -26,21 +36,37 @@ public class ScorePresenter : MonoBehaviour
 			case Score.PERFECT:
 				target = perfect;
 				ResultManager.Instance.PerfectCount++;
+				if (audioSource)
+				{
+					audioSource.PlayOneShot(perfectClip);
+				}
 				break;
 
 			case Score.GREAT:
 				target = great;
 				ResultManager.Instance.GreatCount++;
+				if (audioSource)
+				{
+					audioSource.PlayOneShot(greatClip);
+				}
 				break;
 
 			case Score.GOOD:
 				target = good;
 				ResultManager.Instance.GoodCount++;
+				if (audioSource)
+				{
+					audioSource.PlayOneShot(goodClip);
+				}
 				break;
 
 			case Score.BAD:
 				target = bad;
 				ResultManager.Instance.BadCount++;
+				if (audioSource)
+				{
+					audioSource.PlayOneShot(badClip);
+				}
 				break;
 
 			default:
