@@ -430,45 +430,6 @@
 				{
 					"timing":0,
 					"pitch":0
-				}
-			]
-		},
-
-		{
-			"nodes":[
-				{
-					"timing":0,
-					"pitch":0
-				},
-				{
-					"timing":1,
-					"pitch":1
-				},
-			]
-		},
-
-		{
-			"nodes":[
-				{
-					"timing":0,
-					"pitch":0
-				},
-				{
-					"timing":1,
-					"pitch":1
-				},
-				{
-					"timing":2,
-					"pitch":2
-				},
-			]
-		},
-
-		{
-			"nodes":[
-				{
-					"timing":0,
-					"pitch":0
 				},
 				{
 					"timing":1,
