@@ -36,7 +36,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Submit") && isTutorialing)
+		if (Input.GetButtonDown("Submit") && isTutorialing && ProblemLoader.isCached)
 		{
 			tutorialRoot.SetActive(false);
 			tutorialSubject.OnNext(0);

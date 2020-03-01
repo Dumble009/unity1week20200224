@@ -6,8 +6,6 @@ using System;
 
 public class StageManager : SingletonMonoBehaviour<StageManager>
 {
-	[SerializeField]
-	string problemPath;
 
 	Subject<int> startStageSubject;
 	public IObservable<int> OnStartStage {
@@ -106,7 +104,7 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
 
 	void StartStage()
 	{
-		problem = ProblemLoader.LoadProblem(problemPath);
+		problem = ProblemLoader.LoadProblem();
 		ProblemManager.Instance.SetProblem(problem);
 		BeatManager.Instance.StartBeat();
 		playLoopCoroutine = PlayLoop();

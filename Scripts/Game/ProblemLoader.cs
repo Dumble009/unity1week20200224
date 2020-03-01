@@ -4,33 +4,31 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
 using System.Net;
+using UnityEngine;
 
-public class ProblemLoader
+public class ProblemLoader : SingletonMonoBehaviour<ProblemLoader>
 {
-	static bool isCached = false;
-	static string cache;
-	public static Problem LoadProblem(string path)
+	[SerializeField]
+	string path;
+	private IEnumerator Start()
 	{
-		string jsonBody = "";
-		if (!isCached || string.IsNullOrEmpty(cache))
-		{
-			WebClient wc = new WebClient();
-			using (Stream wwwStream = wc.OpenRead(path))
-			{
-				StreamReader sr = new StreamReader(wwwStream);
-				jsonBody = sr.ReadToEnd();
-			}
-			cache = jsonBody;
-		}
-		else
-		{
-			jsonBody = cache;
-		}
+		var request = UnityEngine.Networking.UnityWebRequest.Get(path);
+		yield return request.SendWebRequest();
 
+		cache = request.downloadHandler.text;
+		isCached = true;
+	}
 
+	static public bool isCached = false;
+	static string cache;
+	public static Problem LoadProblem()
+	{
+		string jsonBody = cache;
+		
 		using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(jsonBody)))
 		{
 			var serializer = new DataContractJsonSerializer(typeof(Problem));
+			
 			Problem p = serializer.ReadObject(ms) as Problem;
 
 			return p;
