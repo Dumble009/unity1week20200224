@@ -188,7 +188,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: -0.57, y: 0.52, z: 0}
   - {x: -0.57, y: -0.58, z: 0}
@@ -315,7 +315,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: 0.342, y: 0.52, z: 0}
   - {x: 0.342, y: -0.58, z: 0}
@@ -680,7 +680,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: -0.342, y: 0.52, z: 0}
   - {x: -0.342, y: -0.58, z: 0}
@@ -1102,7 +1102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &234315557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3541,7 +3541,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: 0.114, y: 0.52, z: 0}
   - {x: 0.114, y: -0.58, z: 0}
@@ -3668,7 +3668,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: 0.57, y: 0.52, z: 0}
   - {x: 0.57, y: -0.58, z: 0}
@@ -6618,7 +6618,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Positions:
   - {x: -0.114, y: 0.52, z: 0}
   - {x: -0.114, y: -0.58, z: 0}
